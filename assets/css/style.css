@@ -1,124 +1,50 @@
-* {
-  box-sizing: border-box;
+.navbar-brand { letter-spacing: .3px; }
+.card { border-radius: 14px; }
+.card img, .card video { border-radius: 10px; }
+body { scroll-behavior: smooth; }
+
+
+/* .sidebar {
+    width: 280px;
+    background: #f7f7f7;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    min-height: 100vh;
 }
 
-body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  margin: 0;
-  background: #f6f7fb;
-  color: #222;
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 16px;
+.sidebar form {
+    
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 0;
+.sidebar input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
-h1 {
-  margin: 0;
-  font-size: 24px;
+.sidebar button {
+    padding: 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.auth-forms {
-  display: flex;
-  gap: 8px;
+.sidebar button:hover {
+    background: #45a049;
 }
-
-.auth-forms form {
-  background: #fff;
-  padding: 8px;
-  border-radius: 8px;
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+.card.sidebar {
+  min-height: 100vh;
 }
-
-.auth-forms input {
-  padding: 6px 8px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-}
-
-.auth-forms button,
-button {
-  padding: 6px 10px;
-  border: 0;
-  border-radius: 6px;
-  background: #3b82f6;
-  color: white;
-  cursor: pointer;
-}
-
-.auth-forms button:hover,
-button:hover {
-  filter: brightness(0.95);
-}
-
-.logged {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-
-main {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-}
-
-.create form {
-  display: grid;
-  gap: 8px;
-}
-
-#createForm input,
-#createForm textarea {
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: #fff;
-}
-
-
-.card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
-  margin-bottom: 12px;
-}
-
-.card-header {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-bottom: 6px;
-}
-
-.card-header h3 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.card-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-footer {
-  margin-top: 16px;
-  text-align: center;
-  color: #666;
-}
-
+ */

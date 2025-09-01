@@ -9,59 +9,42 @@ class User {
     public function register(string $username, string $password): array {
         $username = trim($username);
         if ($username === '' || $password === '') {
-            return [false, 'Username and password are required'];
+            return [false, 'Username and password are required.'];
         }
-
-        // Check unique username
-        $sql = 'SELECT id FROM users WHERE username = ? LIMIT 1';
-        $stmt = $this->conn->prepare($sql);
+        // unique
+        $stmt = $this->conn->prepare('SELECT id FROM users WHERE username=? LIMIT 1');
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $stmt->store_result();
         if ($stmt->num_rows > 0) {
-            return [false, 'Username already taken'];
+            return [false, 'Username already taken.'];
         }
         $stmt->close();
 
         $hash = password_hash($password, PASSWORD_DEFAULT);
-
         $ins = $this->conn->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
         $ins->bind_param('ss', $username, $hash);
-        if ($ins->execute()) {
-            return [true, 'Registration successful'];
-        }
-        return [false, 'Registration failed'];
+        if ($ins->execute()) return [true, 'Registration successful.'];
+        return [false, 'Registration failed.'];
     }
 
     public function login(string $username, string $password): array {
-        $sql = 'SELECT id, username, password FROM users WHERE username = ? LIMIT 1';
-        $stmt = $this->conn->prepare($sql);
+        $stmt = $this->conn->prepare('SELECT id, username, password FROM users WHERE username=? LIMIT 1');
         $stmt->bind_param('s', $username);
         $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-        $stmt->close();
-
-        if (!$user) {
-            return [false, 'User not found'];
-        }
-        if (!password_verify($password, $user['password'])) {
-            return [false, 'Invalid credentials'];
-        }
-
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        $res = $stmt->get_result();
+        $user = $res->fetch_assoc();
+        if (!$user) return [false, 'User not found.'];
+        if (!password_verify($password, $user['password'])) return [false, 'Invalid credentials.'];
+        if (session_status() === PHP_SESSION_NONE) session_start();
         session_regenerate_id(true);
         $_SESSION['user_id'] = (int)$user['id'];
         $_SESSION['username'] = $user['username'];
-        return [true, 'Login successful'];
+        return [true, 'Login successful.'];
     }
 
     public function logout(): void {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        if (session_status() === PHP_SESSION_NONE) session_start();
         $_SESSION = [];
         if (ini_get('session.use_cookies')) {
             $params = session_get_cookie_params();
@@ -75,9 +58,6 @@ class User {
 
     public function whoami(): ?array {
         if (!isset($_SESSION['user_id'])) return null;
-        return [
-            'id' => (int)$_SESSION['user_id'],
-            'username' => (string)$_SESSION['username']
-        ];
+        return ['id' => (int)$_SESSION['user_id'], 'username' => (string)$_SESSION['username']];
     }
 }
